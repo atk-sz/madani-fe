@@ -1,13 +1,15 @@
-import React, { useEffect, Suspense } from "react";
-// import { lazily } from "react-lazily";
+import React, { Suspense } from "react";
+import { lazily } from "react-lazily";
 import { Routes, Route } from "react-router-dom";
-import { Home } from "./views";
 // import { ToastContainer } from "react-toastify";
 // import "react-toastify/dist/ReactToastify.css";
 // import { auth } from "./firebase";
 // import { useDispatch } from "react-redux";
 // import { currentUser } from "./api/auth";
 // import { LoadingOutlined } from "@ant-design/icons";
+
+const { Home, Page1 } = lazily(() => import("./views"));
+const { Header } = lazily(() => import("./components"));
 
 const App = () => {
   // const dispatch = useDispatch();
@@ -38,11 +40,13 @@ const App = () => {
   //   // cleanup
   //   return () => unsubscribe();
   // }, [dispatch]);
+
   return (
     <Suspense fallback={<div className="col text-center p-5 h1">Zloading</div>}>
+      <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        {/* <Route exact path="/" element={Home} /> */}
+        <Route path="/p1" element={<Page1 />} />
       </Routes>
     </Suspense>
   );
