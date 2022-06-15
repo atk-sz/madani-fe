@@ -43,7 +43,7 @@ const App = () => {
 
   return (
     <Suspense fallback={<div className="col text-center p-5 h1">Zloading</div>}>
-      <Header />
+      {/* <Header /> */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/p1" element={<Page1 />} />
